@@ -58,35 +58,82 @@
 
 ## 🛠️ **安装配置**
 
-### 1. 安装依赖
+### 1. 通过 npm 安装（推荐）
+```bash
+npm install -g universal-cli-history-mcp
+```
+
+### 2. 从源码安装
 ```bash
 cd universal-cli-history-mcp
 npm install
 npm run build
 ```
 
-### 2. 配置 Claude Desktop
+### 3. 配置 Claude Desktop/Code
+
+**Windows 配置：**
 ```json
 {
   "mcpServers": {
     "universal-cli-history": {
       "command": "node",
-      "args": ["/absolute/path/to/universal-cli-history-mcp/dist/index.js"]
+      "args": ["C:\\Users\\gretc\\AppData\\Roaming\\npm\\node_modules\\universal-cli-history-mcp\\dist\\index.js"]
     }
   }
 }
 ```
 
-### 3. 配置 Claude Code
+**macOS/Linux 配置：**
 ```json
 {
   "mcpServers": {
     "universal-cli-history": {
       "command": "node",
-      "args": ["/absolute/path/to/universal-cli-history-mcp/dist/index.js"]
+      "args": ["/usr/local/lib/node_modules/universal-cli-history-mcp/dist/index.js"]
     }
   }
 }
+```
+
+**使用环境变量（跨平台）：**
+```json
+{
+  "mcpServers": {
+    "universal-cli-history": {
+      "command": "node",
+      "args": ["%APPDATA%/npm/node_modules/universal-cli-history-mcp/dist/index.js"]
+    }
+  }
+}
+```
+
+**💡 提示：** 使用 `npm root -g` 命令查找你的全局安装路径。
+
+## 🚨 **故障排除**
+
+### **常见问题**
+
+1. **MCP error -32000: Connection closed**
+   - 检查路径是否正确
+   - 确保使用双反斜杠或正斜杠
+   - 重启 Claude Desktop/Code
+
+2. **找不到工具**
+   - 运行 `npm install -g universal-cli-history-mcp` 重新安装
+   - 验证安装：`npm list -g universal-cli-history-mcp`
+
+3. **权限错误**
+   - Windows: 以管理员身份运行命令提示符
+   - macOS/Linux: 使用 `sudo npm install -g universal-cli-history-mcp`
+
+### **验证安装**
+```bash
+# 检查是否安装成功
+npm list -g universal-cli-history-mcp
+
+# 测试 MCP 服务器
+node "C:\Users\gretc\AppData\Roaming\npm\node_modules\universal-cli-history-mcp\dist\index.js"
 ```
 
 ## 🔍 **使用示例**
